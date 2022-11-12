@@ -7,72 +7,22 @@ Created on Thu Oct 27 17:48:56 2022
 
 import pandas as pd
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer 
-#reading excel or xlxs files
-
 data = pd.read_excel("articles.xlsx")
-
-#summary of the data
 data.describe()
-#summary x columns
 data.info()
-
-#Counting the number of articles per source
-#format of groupby: df.groupby(["column_to_group"])["column_to_count"].count()
 
 data.groupby(["source_id"])["article_id"].count()
 
-# #of reactions by publsher
+# No. reactions by publisher
 data.groupby(["source_id"])["engagement_reaction_count"].sum()
-
-#dropping a column
 
 data = data.drop("engagement_comment_plugin_count" , axis=1)
 
-#calling functions on Python
-
-def thisFunction():
-    print("Aprendiendo a hacer functions!")
-    
-thisFunction()
-
-#This is a function with variables
-
-def aboutMe(name, surname, location):
-    print("This is "+name+ " My surname is "+surname+ " I am from " +location)
-    return name,surname,location
-    
-a = aboutMe("Daniela", "Urca", "Colombia")
-
-#using for loops in functions
-
-def workField(carrer):
-    for x in carrer:
-        print("The passion of "+x)
-Danielaworks = ["psychology", "teach", "coach", "cook"]
-
-workField(Danielaworks)
-
-
 #Creating a keyword flag
 
-keyword="crash"
+keyword="murder"
 
-#creating a for loop to isolate each title
-
-# lenght=len(data)
-# keyword_flag = []
-# for x in range (0,lenght):
-#     heading = data["title"][x]
-#     try:
-#         if keyword in heading:
-#             flag = 1
-#         else:
-#             flag = 0
-#     except: 
-#         flag = 0
-#     keyword_flag.append(flag)
-
-#loop to a fuction
+#creating a for loop in to a function to isolate each title
 
 def keywordflag(keyword):
     lenght=len(data)
@@ -108,7 +58,6 @@ pos = sent["pos"]
 neu = sent["neu"]
 
 #adding a for loop to extract sentiment per title
-
 
 title_neg_sentiment = []
 title_pos_sentiment = []
